@@ -1,0 +1,9 @@
+<launch>
+    <node pkg="unitree_camera" type="unitree_camera_node" name="unitree_camera_node" output="screen">
+        <param name="config_file" value="$(find unitree_camera)/sdk/UnitreecameraSDK/stereo_camera_config.yaml" />
+        <param name="device_node" value="0" />
+        <param name="frame_width" value="1856" />
+        <param name="frame_height" value="800" />
+        <param name="fps" value="30" />
+    </node>
+</launch>
