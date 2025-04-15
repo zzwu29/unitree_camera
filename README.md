@@ -17,6 +17,8 @@ roslaunch unitree_camera unitree_SV1_25.launch
 
 You could see `/camera/infra1/image_rect_raw` and `/camera/infra2/image_rect_raw` stereo image topics. If you would like to change the parameter in the launch file.
 
+![](./misc/demo.png)
+
 ### TODO
 
 - [ ] To support raw image message
