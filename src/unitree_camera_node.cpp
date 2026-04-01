@@ -45,11 +45,13 @@ int main(int argc, char **argv) {
     image_transport::Publisher pub_left = it.advertise("/camera/infra1/image_rect_raw", 1);
     image_transport::Publisher pub_right = it.advertise("/camera/infra2/image_rect_raw", 1);
 
+    std::chrono::microseconds timestamp;
     // 设置循环频率
     ros::Rate loop_rate(fps);
     while (ros::ok()) {
-        cv::Mat left, right;
-        if (cam.getRectStereoFrame(left, right)) {
+        cv::Mat left, right, feim;
+        // if (cam.getRectStereoFrame(left, right)) {
+        if (cam.getRectStereoFrame(left, right, feim, timestamp)) {
             cv::flip(left, left, -1);   // 翻转图像
             cv::flip(right, right, -1); // 翻转图像
             // 将cv::Mat转换为sensor_msgs::Image消息
@@ -57,7 +59,8 @@ int main(int argc, char **argv) {
             sensor_msgs::ImagePtr msg_right = cv_bridge::CvImage(std_msgs::Header(), "bgr8", right).toImageMsg();
 
             // 设置时间戳
-            auto time = ros::Time::now();
+            // auto time = ros::Time::now();
+            ros::Time time(timestamp.count() * 1e-6); // 将微秒转换为秒
             msg_left->header.stamp = time;
             msg_right->header.stamp = time;
 
