@@ -15,9 +15,12 @@ int main(int argc, char **argv) {
     int deviceNode;
     nh.param("device_node", deviceNode, 0); // 默认设备节点为0 (/dev/video0)
     int width, height, fps;
+    std::string left_cam_topic, right_cam_topic;
     nh.param("frame_width", width, 1856);   // 默认宽度1856
     nh.param("frame_height", height, 800);  // 默认高度800
     nh.param("fps", fps, 30);               // 默认帧率30
+    nh.param("left_cam_topic", left_cam_topic, std::string("/cam0/image")); // 默认左目话题
+    nh.param("right_cam_topic", right_cam_topic, std::string("/cam1/image")); // 默认右目话题
     cv::Size frameSize(width, height);
 
     // 获取配置文件路径参数
@@ -42,8 +45,8 @@ int main(int argc, char **argv) {
 
     // 创建图像发布者
     image_transport::ImageTransport it(nh_pub);
-    image_transport::Publisher pub_left = it.advertise("/camera/infra1/image_rect_raw", 1);
-    image_transport::Publisher pub_right = it.advertise("/camera/infra2/image_rect_raw", 1);
+    image_transport::Publisher pub_left = it.advertise(left_cam_topic, 1);
+    image_transport::Publisher pub_right = it.advertise(right_cam_topic, 1);
 
     std::chrono::microseconds timestamp;
     // 设置循环频率

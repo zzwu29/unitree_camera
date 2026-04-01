@@ -15,7 +15,7 @@ In your `YOUR_CATKIN_WS`, run `catkin_make` or `catkin build`. Then, run
 roslaunch unitree_camera unitree_SV1_25.launch
 ```
 
-You could see `/camera/infra1/image_rect_raw` and `/camera/infra2/image_rect_raw` stereo image topics. If you would like to change the parameter in the launch file.
+Generally, you could see `/cam0/image` and `/cam1/image` stereo image topics. If you would like to change the parameter in the launch file.
 
 ![](./misc/demo.png)
 

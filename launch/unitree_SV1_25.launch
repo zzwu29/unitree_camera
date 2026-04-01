@@ -1,9 +1,20 @@
 <launch>
     <node pkg="unitree_camera" type="unitree_camera_node" name="unitree_camera_node" output="screen">
+
+        <!-- sdk config file -->
         <param name="config_file" value="$(find unitree_camera)/sdk/UnitreecameraSDK/stereo_camera_config.yaml" />
-        <param name="device_node" value="0" />   <!-- should be same as DeviceNode in stereo_camera_config.yaml -->
+
+        <!-- should be same as DeviceNode in stereo_camera_config.yaml -->
+        <param name="device_node" value="0" />
+
+        <!-- camera size, should be modified carefully ! -->
         <param name="frame_width" value="1856" />
         <param name="frame_height" value="800" />
-        <param name="fps" value="10" /> <!-- The camera supports up to 30 fps, but it may cause high CPU usage. Adjust as needed. -->
+
+        <!-- The camera supports up to 30 fps, but it may cause high CPU usage. Adjust as needed. -->
+        <param name="fps" value="10" /> 
+
+        <param name= "left_cam_topic" value="/cam0/image" />
+        <param name="right_cam_topic" value="/cam1/image" />
     </node>
 </launch>
