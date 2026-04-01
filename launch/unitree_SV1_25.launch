@@ -4,6 +4,6 @@
         <param name="device_node" value="0" />   <!-- should be same as DeviceNode in stereo_camera_config.yaml -->
         <param name="frame_width" value="1856" />
         <param name="frame_height" value="800" />
-        <param name="fps" value="30" />
+        <param name="fps" value="10" /> <!-- The camera supports up to 30 fps, but it may cause high CPU usage. Adjust as needed. -->
     </node>
 </launch>
